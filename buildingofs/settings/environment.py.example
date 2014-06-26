@@ -1,0 +1,20 @@
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'buildingofs',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
+
+STATIC_URL = '/static/'
+
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
+
+ALLOWED_HOSTS = ['*']
+
+NAMEKO_URL = 'amqp://guest:guest@localhost:5672//platform'
+NAMEKO_TIMEOUT = 10
