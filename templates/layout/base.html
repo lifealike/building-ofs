@@ -1,0 +1,24 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+    <head>
+        <title>{% block title %}Bulding onefinestay{% endblock %}</title>
+        {% block import_styles %}{% endblock %}
+        {% block extrahead %}{% endblock %}
+    </head>
+    <body class="{% block body_class %}{% endblock %}">
+        {% block body %}
+        <header id="header">
+            <a href="{% url 'home' %}" id="logo">
+                <h1>onefinestay</h1>
+            </a>
+        </header>
+        <div id="page">
+            <div id="content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+        {% endblock %}
+        {% block import_scripts %}{% endblock %}
+    </body>
+</html>

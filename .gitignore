@@ -1,0 +1,11 @@
+.DS_Store
+*.swp
+*.swo
+*.pyc
+*.sass-cache
+*~
+/dev.sqlite
+buildingofs/settings/environment.py
+tmp/*
+.coverage
+node_modules/
