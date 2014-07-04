@@ -1,5 +1,9 @@
 {% extends 'layout/base.html' %}
 
 {% block content %}
-    <h1>Post</h1>
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.author.full_name }}</p>
+    <div>
+        {{ post.body_html|safe }}
+    </div>
 {% endblock %}

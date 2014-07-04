@@ -1,18 +1,27 @@
 {% load staticfiles %}
+{% load compressed %}
 <!doctype html>
 <html>
     <head>
         <title>{% block title %}Bulding onefinestay{% endblock %}</title>
-        {% block import_styles %}{% endblock %}
+        {% block import_styles %}
+            {% compressed_css 'base_styles' %}
+        {% endblock %}
         {% block extrahead %}{% endblock %}
     </head>
     <body class="{% block body_class %}{% endblock %}">
         {% block body %}
-        <header id="header">
-            <a href="{% url 'home' %}" id="logo">
-                <h1>onefinestay</h1>
-            </a>
-        </header>
+        {% block header %}
+        <nav class="top-navigation">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/">About</a></li>
+                <li><a href="/">Team</a></li>
+                <li><a href="/">Careers</a></li>
+                <li><a href="/">Visit onefinestay</a></li>
+            </ul>
+        </nav>
+        {% endblock %}
         <div id="page">
             <div id="content">
                 {% block content %}{% endblock %}

@@ -1,4 +1,5 @@
 from django.conf import global_settings
+import sys
 """
 Django settings for buildingofs project.
 
@@ -13,6 +14,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+DEBUG = True
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -28,6 +30,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'pipeline',
     'south',
 
     'buildingofs.blog',
@@ -64,6 +67,23 @@ WSGI_APPLICATION = 'buildingofs.wsgi.application'
 
 CACHE_TIMEOUT = 300
 
+STATIC_ROOT = os.path.realpath(BASE_DIR + '/../public/static/')
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+  os.path.realpath(BASE_DIR + '/../static/'),
+)
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    #'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)
+
+if DEBUG or hasattr(sys, '_called_from_test'):
+    STATICFILES_STORAGE = 'pipeline.storage.NonPackagingPipelineStorage'
+else:
+    STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
